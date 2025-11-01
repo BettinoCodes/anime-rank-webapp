@@ -16,7 +16,7 @@ const Vote = () => {
   const fetchRandomPair = async () => {
     try {
       setLoading(true)
-      const response = await axios.get('/api/anime/random-pair')
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/anime/random-pair`)
       setAnimePair(response.data)
       setSelectedAnime(null)
       setShowResult(false)
@@ -53,7 +53,7 @@ const replaceAnime = async (position) => {
 // Update the fetchRandomAnime function to accept excluded IDs
 const fetchRandomAnime = async (excludedIds = '') => {
   try {
-    const response = await axios.get(`/api/anime/random/single?exclude=${excludedIds}`)
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/anime/random/single?exclude=${excludedIds}`)
     return response.data
   } catch (error) {
     console.error('Error fetching random anime:', error)
@@ -72,7 +72,7 @@ const fetchRandomAnime = async (excludedIds = '') => {
     setSelectedAnime(winnerId)
     
     try {
-      await axios.post('/api/votes', {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/votes`, {
         voterId: 'user-' + Date.now(),
         winnerId,
         loserId,
@@ -87,7 +87,7 @@ const fetchRandomAnime = async (excludedIds = '') => {
 
   const handleDraw = async () => {
   try {
-    await axios.post('/api/votes', {
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/votes`, {
       voterId: 'user-' + Date.now(),
       winnerId: animePair[0]._id,
       loserId: animePair[1]._id,

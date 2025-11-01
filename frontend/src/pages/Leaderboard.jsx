@@ -37,7 +37,7 @@ const Leaderboard = () => {
   const fetchAnime = async () => {
     try {
       setLoading(true)
-      const response = await axios.get('/api/anime')
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/anime`)
       setAnimeList(response.data)
     } catch (error) {
       console.error('Error fetching anime:', error)

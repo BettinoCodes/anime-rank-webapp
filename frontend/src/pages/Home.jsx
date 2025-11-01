@@ -19,7 +19,7 @@ const Home = () => {
 
   const fetchAnime = async () => {
     try {
-      const response = await axios.get('${import.meta.env.VITE_API_URL}/api/anime')
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/anime`)
       setAnimeList(response.data.slice(0, 20)) // Show more anime with compact grid
     } catch (error) {
       console.error('Error fetching anime:', error)
