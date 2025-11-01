@@ -1,0 +1,396 @@
+.vote-anime-flip-card {
+  width: min(300px, 40vw);
+  height: min(450px, 70vh);
+  perspective: 1000px;
+  cursor: pointer;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  container-type: inline-size;
+}
+
+.vote-anime-flip-card:hover {
+  border-color: #f8f9fb;
+  box-shadow: 0 10px 25px rgb(93, 103, 95);
+}
+
+.vote-anime-flip-card.selected {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(46, 204, 113, 0.4);
+  border-color: #2ecc71;
+}
+
+.vote-anime-flip-card.show-result {
+  pointer-events: none;
+}
+
+/* Flip Card Styles - UPDATED with home- prefix */
+.vote-anime-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s ease;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vote-anime-flip-card.flipped .vote-anime-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Front and Back Card Styles - UPDATED */
+.vote-card-front{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  background: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  text-align: center;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+}
+
+.vote-card-back{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  background: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  text-align: center;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+}
+
+.vote-card-front {
+  color: #000;
+  transform: rotateY(0deg);
+}
+
+.vote-card-back {
+  transform: rotateY(180deg);
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+/* Card Content Wrapper - UPDATED */
+.vote-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 8px;
+  position: relative;
+}
+
+/* Updated styles for elements inside card-content */
+.vote-anime-image {
+  width: 60%;
+  height: 35%;
+  background-color: #7a6666;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 3px solid #000000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+}
+
+.vote-anime-tit {
+  font-weight: 600;
+  margin: 3px;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 
+    2px 2px 0 #000,
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    0px 2px 0 #000,
+    2px 0px 0 #000,
+    0px -2px 0 #000,
+    -2px 0px 0 #000,
+    2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: bold;
+  line-height: 1.2;
+  -webkit-text-stroke: 2px #000000;
+  paint-order: stroke fill;
+  font-size: clamp(0.8rem, 2.5vw, 1.3rem);
+  max-width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  flex-shrink: 0;
+}
+
+.vote-genres {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.vote-genre-tag {
+  background-color: #060606;
+  color: white;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  border: 2px solid #ffffff;
+}
+
+/* Haven't Watched Button - UPDATED */
+.vote-havent-watched-btn {
+  background: rgba(255, 255, 255, 0.9);
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  margin: 5px 0;
+  width: auto;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.vote-havent-watched-btn:hover {
+  background: rgb(222, 27, 1);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.vote-flip-hint {
+  font-size: 11px;
+  color: #555;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+/* UPDATED: Description box with scrollable content */
+.vote-anime-description-box {
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  border-radius: 6px;
+  padding: 15px;
+  width: 100%;
+  height: 70%;
+  overflow-y: auto; /* Changed from hidden to auto */
+  font-size: 12px;
+  line-height: 1.3;
+  margin-top: 10px;
+  flex-shrink: 0;
+  /* Remove the line clamp properties since we want scrolling */
+  display: block;
+  white-space: normal;
+  position: relative;
+}
+
+/* Custom scrollbar for the description box */
+.vote-anime-description-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.vote-anime-description-box::-webkit-scrollbar-track {
+  background: #2a2a2a;
+  border-radius: 3px;
+}
+
+.vote-anime-description-box::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 3px;
+}
+
+.vote-anime-description-box::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+/* Remove the fade effect since we have scrolling now */
+.vote-anime-description-box::after {
+  display: none;
+}
+
+/* The rest of your existing CSS remains with vote- prefix */
+.vote-flip-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(5px);
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.vote-flip-btn:hover {
+  background: white;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.vote-flip-icon {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.vote-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 15px;
+  pointer-events: none;
+}
+
+.vote-anime-flip-card:hover .vote-overlay {
+  opacity: 1;
+}
+
+.vote-anime-flip-card:hover .vote-flip-btn:hover ~ .vote-overlay {
+  opacity: 0;
+}
+
+.vote-winner-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: linear-gradient(135deg, #f39c12, #e74c3c);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: bounce 0.5s ease infinite alternate;
+}
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-5px); }
+}
+
+.vote-loser-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 1024px) {
+  .vote-anime-flip-card {
+    width: 300px;
+    height: 450px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .vote-anime-flip-card {
+    width: 280px;
+    height: 420px;
+  }
+  
+  .vote-anime-tit {
+    font-size: 1.1rem;
+  }
+  
+  .vote-havent-watched-btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .vote-anime-flip-card {
+    width: 250px;
+    height: 380px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .vote-anime-flip-card {
+    width: 220px;
+    height: 350px;
+  }
+  
+  .vote-flip-btn {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .vote-flip-icon {
+    font-size: 14px;
+  }
+  
+  .vote-havent-watched-btn {
+    padding: 5px 10px;
+    font-size: 0.7rem;
+  }
+  
+  /* Adjust description box for mobile */
+  .vote-anime-description-box {
+    padding: 12px;
+    font-size: 11px;
+  }
+}
+
+/* Very small screens */
+@media screen and (max-width: 360px) {
+  .vote-anime-description-box {
+    padding: 10px;
+    font-size: 10px;
+  }
+}

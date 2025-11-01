@@ -1,0 +1,47 @@
+.anime-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(
+      min(
+        calc((100% - (var(--max-columns) - 1) * var(--gap)) / var(--max-columns)),
+        max(
+          calc((100% - (var(--min-columns) - 1) * var(--gap)) / var(--min-columns)),
+          var(--card-width)
+        )
+      ),
+      1fr
+    )
+  );
+  gap: var(--gap);
+  width: 100%;
+  padding: 20px 0;
+}
+
+.anime-grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+
+}
+
+/* Ensure the cards scale properly */
+.anime-grid-item .home-anime-flip-card {
+  width: var(--card-width);
+  height: var(--card-height);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .anime-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .anime-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+}

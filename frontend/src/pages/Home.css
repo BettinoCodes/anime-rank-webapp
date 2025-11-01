@@ -1,0 +1,221 @@
+body{
+  
+}
+.home-container {
+  min-height: calc(100vh - 80px);
+  color: white;
+  width: 100%;
+  flex: 1;
+}
+
+.hero-section {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, rgba(4, 4, 4, 0.9) 0%, rgba(29, 28, 30, 0.9) 100%);
+  width: 100%;
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-section p {
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+.cta-button {
+  display: inline-block;
+  background: #0e0808;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 30px;
+  border: grey;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  background: #646060;
+}
+
+.featured-section {
+  padding: 20px 20px;
+  text-align: center;
+  background: rgba(19, 19, 19, 0.9);
+  backdrop-filter: blur(10px);
+}
+
+.featured-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.featured-section > p {
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+  opacity: 0.8;
+}
+
+.view-all-button {
+  display: inline-block;
+  background: transparent;
+  color: white;
+  padding: 12px 25px;
+  border: 2px solid white;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  margin-top: 30px;
+}
+
+.view-all-button:hover {
+  background: white;
+  color: #000000;
+}
+
+/* Footer Styles with Custom Icons */
+.home-footer {
+  background: #000000;
+  color: white;
+  padding: 20px 20px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  
+}
+
+.footer-disclaimer p {
+  margin: 5px 0;
+  color: #ccc;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.footer-links {
+  display: flex;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 24px;
+  border: 1px solid #444;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 500;
+}
+
+.footer-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-color: #666;
+}
+
+.footer-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* Makes the icon white */
+  transition: transform 0.3s ease;
+}
+
+.footer-link:hover .footer-icon {
+  transform: scale(1.1);
+}
+
+/* Alternative if you want colored icons instead of white */
+.footer-link .footer-icon-colored {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.footer-link:hover .footer-icon-colored {
+  transform: scale(1.1);
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+  .home-footer {
+    padding: 30px 15px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .footer-link {
+    justify-content: center;
+    padding: 12px 24px;
+  }
+
+  .footer-disclaimer p {
+    font-size: 0.85rem;
+  }
+
+  .footer-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .home-footer {
+    padding: 25px 10px;
+  }
+
+  .footer-content {
+    gap: 15px;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-section p {
+    font-size: 1.1rem;
+  }
+  
+  .featured-section {
+    padding: 40px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 60px 15px;
+  }
+  
+  .featured-section {
+    padding: 30px 10px;
+  }
+}

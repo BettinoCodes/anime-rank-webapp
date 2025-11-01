@@ -1,0 +1,643 @@
+.vote-container {
+  min-height: calc(100vh - 80px);
+  background: linear-gradient(135deg, #000000 0%, #262323 100%);
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+  /* Prevent horizontal overflow */
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.vote-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.vote-header h1 {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.vote-header p {
+  font-size: 1.2rem;
+  color: #fefefe;
+}
+
+.battle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  max-width: 1200px;
+  width: 100%;
+  /* Prevent wrapping to new lines */
+  flex-wrap: nowrap;
+}
+
+.anime-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.anime-card.selected {
+  transform: scale(1.05);
+  box-shadow: 10px 10px 25px rgba(46, 204, 113, 0.4);
+}
+
+.anime-card.show-result {
+  pointer-events: none;
+}
+
+.anime-card:hover .card-image-container img {
+  transform: scale(1.05);
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 15px;
+}
+
+.card-overlay h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.anime-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.rating {
+  font-weight: bold;
+  color: #f1c40f;
+}
+
+.genres {
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  height: 30%;
+  align-items: flex-start;
+}
+
+.genre-tag {
+  background: #3498db;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+.vs-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.vs-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.battle-controls {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.skip-btn, .draw-btn, .next-btn {
+  padding: 12px 24px;
+  border: 2px solid #ffffff;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  background: #000000;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.skip-btn:hover, .draw-btn:hover, .next-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+  background: #1a1a1a;
+}
+
+.skip-btn:active, .draw-btn:active, .next-btn:active {
+  transform: translateY(-1px);
+}
+
+/* Optional: Add a subtle glow effect on hover */
+.skip-btn:hover::before, .draw-btn:hover::before, .next-btn:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 23px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+  to {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Individual button emphasis */
+.draw-btn {
+  border-color: #f39c12;
+  color: #f39c12;
+}
+
+.draw-btn:hover {
+  background: rgba(243, 156, 18, 0.1);
+}
+
+.next-btn {
+  border-color: #27ae60;
+  color: #27ae60;
+}
+
+.next-btn:hover {
+  background: rgba(39, 174, 96, 0.1);
+}
+
+.skip-btn {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.skip-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== NEW OVERLAY ANIMATIONS ===== */
+
+/* Result Overlay Animations */
+.result-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  z-index: 20;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Winner Overlay */
+.result-overlay.winner {
+  background: linear-gradient(135deg, rgba(46, 204, 113, 0.9) 0%, rgba(39, 174, 96, 0.9) 100%);
+  animation: winnerGlow 2s ease-in-out;
+}
+
+@keyframes winnerGlow {
+  0% {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0) 0%, rgba(39, 174, 96, 0) 100%);
+    box-shadow: 0 0 0 rgba(46, 204, 113, 0);
+  }
+  50% {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.9) 0%, rgba(39, 174, 96, 0.9) 100%);
+    box-shadow: 0 0 30px rgba(46, 204, 113, 0.6);
+  }
+  100% {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.9) 0%, rgba(39, 174, 96, 0.9) 100%);
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
+  }
+}
+
+/* Loser Overlay */
+.result-overlay.loser {
+  background: linear-gradient(135deg, rgba(231, 76, 60, 0.9) 0%, rgba(192, 57, 43, 0.9) 100%);
+  animation: loserPulse 2s ease-in-out;
+}
+
+@keyframes loserPulse {
+  0% {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0) 0%, rgba(192, 57, 43, 0) 100%);
+    transform: scale(1);
+  }
+  50% {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.9) 0%, rgba(192, 57, 43, 0.9) 100%);
+    transform: scale(1.02);
+  }
+  100% {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.9) 0%, rgba(192, 57, 43, 0.9) 100%);
+    transform: scale(1);
+  }
+}
+
+/* Draw Overlay */
+.result-overlay.draw {
+  background: rgba(149, 165, 166, 0.8);
+  animation: drawSlide 1.5s ease-out;
+}
+
+@keyframes drawSlide {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  50% {
+    clip-path: inset(0 0 0 0);
+    opacity: 0.8;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 0.8;
+  }
+}
+
+/* Result Content Styles */
+.result-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  animation: contentPop 0.8s ease-out 0.3s both;
+}
+
+@keyframes contentPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(20px);
+  }
+  70% {
+    transform: scale(1.1) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.result-icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  animation: iconBounce 1s ease-in-out 0.5s both;
+}
+
+@keyframes iconBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.result-text {
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.points-change {
+  font-size: 1.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  animation: pointsPulse 2s ease-in-out infinite;
+}
+
+@keyframes pointsPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Draw specific styles */
+.result-overlay.draw .result-icon {
+  color: #2c3e50;
+}
+
+.result-overlay.draw .points-change {
+  background: rgba(44, 62, 80, 0.3);
+  border-color: rgba(44, 62, 80, 0.5);
+}
+
+/* Remove old result styles that might conflict */
+.result-win, .result-lose {
+  display: none;
+}
+
+.rating-change {
+  display: none;
+}
+
+/* ===== END NEW OVERLAY ANIMATIONS ===== */
+
+/* Mobile and Tablet Responsive */
+@media screen and (max-width: 1024px) {
+  .battle-container {
+    gap: 30px;
+    padding: 0 20px;
+  }
+  
+  .anime-card {
+    width: 300px;
+    height: 450px;
+  }
+  
+  .vs-circle {
+    width: 70px;
+    height: 70px;
+    font-size: 1.3rem;
+  }
+  
+  /* Overlay responsive */
+  .result-icon {
+    font-size: 2.5rem;
+  }
+  
+  .result-text {
+    font-size: 1.5rem;
+  }
+  
+  .points-change {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .battle-container {
+    gap: 20px;
+    padding: 0 15px;
+  }
+  
+  .anime-card {
+    width: 280px;
+    height: 420px;
+  }
+  
+  .vote-header h1 {
+    font-size: 2rem;
+  }
+  
+  .vote-header p {
+    font-size: 1.1rem;
+  }
+  
+  .vs-circle {
+    width: 60px;
+    height: 60px;
+    font-size: 1.2rem;
+  }
+  
+  .battle-controls {
+    gap: 8px;
+  }
+  
+  .skip-btn, .draw-btn, .next-btn {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+  
+  /* Overlay responsive */
+  .result-icon {
+    font-size: 2.2rem;
+  }
+  
+  .result-text {
+    font-size: 1.3rem;
+  }
+  
+  .points-change {
+    font-size: 1.1rem;
+    padding: 6px 12px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .battle-container {
+    gap: 15px;
+    padding: 0 10px;
+  }
+  
+  .anime-card {
+    width: 250px;
+    height: 380px;
+  }
+  
+  .card-overlay h3 {
+    font-size: 1.2rem;
+  }
+  
+  .anime-stats {
+    font-size: 0.8rem;
+  }
+  
+  .vs-circle {
+    width: 50px;
+    height: 50px;
+    font-size: 1rem;
+  }
+  
+  .vote-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  /* Overlay responsive */
+  .result-icon {
+    font-size: 2rem;
+  }
+  
+  .result-text {
+    font-size: 1.2rem;
+  }
+  
+  .points-change {
+    font-size: 1rem;
+    padding: 5px 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .battle-container {
+    gap: 10px;
+    padding: 0 5px;
+  }
+  
+  .anime-card {
+    width: 220px;
+    height: 350px;
+  }
+  
+  .card-overlay {
+    padding: 10px;
+  }
+  
+  .card-overlay h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+  
+  .anime-stats {
+    font-size: 0.75rem;
+  }
+  
+  .genres {
+    padding: 10px;
+  }
+  
+  .genre-tag {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+  }
+  
+  .vs-circle {
+    width: 45px;
+    height: 45px;
+    font-size: 0.9rem;
+  }
+  
+  .battle-controls {
+    gap: 6px;
+  }
+  
+  .skip-btn, .draw-btn, .next-btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+  
+  /* Overlay responsive */
+  .result-icon {
+    font-size: 1.8rem;
+  }
+  
+  .result-text {
+    font-size: 1.1rem;
+  }
+  
+  .points-change {
+    font-size: 0.9rem;
+    padding: 4px 8px;
+  }
+}
+
+/* Very small screens - minimum side by side */
+@media screen and (max-width: 360px) {
+  .battle-container {
+    gap: 8px;
+    padding: 0 5px;
+  }
+  
+  .anime-card {
+    width: 160px;
+    height: 280px;
+  }
+  
+  .card-overlay h3 {
+    font-size: 0.9rem;
+  }
+  
+  .anime-stats {
+    font-size: 0.7rem;
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .genres {
+    padding: 8px;
+    gap: 3px;
+  }
+  
+  .genre-tag {
+    font-size: 0.6rem;
+    padding: 2px 4px;
+  }
+  
+  .vs-circle {
+    width: 35px;
+    height: 35px;
+    font-size: 0.8rem;
+  }
+  
+  /* Overlay responsive */
+  .result-icon {
+    font-size: 1.5rem;
+  }
+  
+  .result-text {
+    font-size: 1rem;
+  }
+  
+  .points-change {
+    font-size: 0.8rem;
+    padding: 3px 6px;
+  }
+}

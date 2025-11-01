@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/* Global reset & background */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to right, #a855f7, #ec4899);
+  color: white;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.nav-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin: 0 0.5rem;
+  transition: transform 0.2s;
+}
+
+.nav-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Anime cards container */
+.cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Individual card */
+.card {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  width: 14rem;
+  height: 22rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Card content */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+}
+
+/* Card description (hidden by default) */
+.card-desc {
+  display: none;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Show description on flip */
+.card.flipped .card-desc {
+  display: block;
+}
+
+.card.flipped .card-header,
+.card.flipped .card-footer {
+  display: none;
+}
+
+/* Battle icon between cards */
+.battle-icon {
+  font-size: 2rem;
+  margin: 0 1rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.battle-icon:hover {
+  transform: scale(1.3);
+}
+
