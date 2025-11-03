@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import VoteAnimeCard from '../components/VoteAnimeCard'
+import Loading from '../components/Loading'
 import './Vote.css'
+
+import votingGif from '../assets/images/voteloading.gif'
+
 
 const Vote = () => {
   const [animePair, setAnimePair] = useState([])
@@ -107,9 +111,11 @@ const fetchRandomAnime = async (excludedIds = '') => {
 
   if (loading) {
     return (
-      <div className="vote-container">
-        <div className="loading">Loading anime battle...</div>
-      </div>
+      <Loading 
+          gifUrl={votingGif}
+          message="Please wait while my backend wakes up from its free-tier nap!"
+          submessage="(Render's free tier takes a moment to stretch and yawn)"
+        />
     )
   }
 

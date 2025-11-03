@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './Leaderboard.css'
 
+import Loading from '../components/Loading'
+
+
+import leaderboardGif from '../assets/images/leaderboardloading.gif'
+
+
 const Leaderboard = () => {
   const [animeList, setAnimeList] = useState([])
   const [filteredAnime, setFilteredAnime] = useState([])
@@ -100,9 +106,11 @@ const Leaderboard = () => {
 
   if (loading) {
     return (
-      <div className="leaderboard-container">
-        <div className="loading">Loading leaderboard...</div>
-      </div>
+      <Loading 
+          gifUrl={leaderboardGif}
+          message="Please wait while my backend wakes up from its free-tier nap!"
+          submessage="(Render's free tier takes a moment to stretch and yawn)"
+        />
     )
   }
 

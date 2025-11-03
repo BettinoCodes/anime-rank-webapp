@@ -3,11 +3,16 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import AnimeCard from '../components/AnimeCard'
 import AnimeGrid from '../components/AnimeGrid'
+import Loading from '../components/Loading'
 import './Home.css'
 
 // Import your custom icons - adjust the paths based on where you place them
 import linkedinIcon from '../assets/images/linkedin-icon.png'
 import githubIcon from '../assets/images/github-icon.png'
+
+//gif import
+import loadingGif from '../assets/images/loading.gif'
+
 
 const Home = () => {
   const [animeList, setAnimeList] = useState([])
@@ -29,7 +34,13 @@ const Home = () => {
   }
 
   if (loading) {
-    return <div className="loading">Loading...</div>
+    return (
+      <Loading 
+          gifUrl={loadingGif}
+          message="Please wait while my backend wakes up from its free-tier nap!"
+          submessage="(Render's free tier takes a moment to stretch and yawn)"
+        />
+    )
   }
 
   return (
