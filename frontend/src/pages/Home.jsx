@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import AnimeCard from '../components/AnimeCard'
 import AnimeGrid from '../components/AnimeGrid'
-import Loading from '../components/Loading'
+import Loading from '../components/loading'
 import './Home.css'
 
 // Import your custom icons - adjust the paths based on where you place them

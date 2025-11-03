@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './Leaderboard.css'
 
-import Loading from '../components/Loading'
+import Loading from '../components/loading'
 
 
 import leaderboardGif from '../assets/images/leaderboardloading.gif'
