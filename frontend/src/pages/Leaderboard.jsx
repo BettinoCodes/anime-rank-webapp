@@ -4,7 +4,6 @@ import './Leaderboard.css'
 
 import Loading from '../components/loading'
 
-
 import leaderboardGif from '../assets/images/leaderboardloading.gif'
 
 
@@ -17,6 +16,8 @@ const Leaderboard = () => {
   const [searchResults, setSearchResults] = useState([])
   const [isSearching, setIsSearching] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [showLoadingComponent, setShowLoadingComponent] = useState(false)
+  const [error, setError] = useState(null)
 
   const genres = [
     'All Anime', 'Action', 'Adventure', 'Comedy', 'Dark Fantasy', 'Drama',
@@ -41,14 +42,29 @@ const Leaderboard = () => {
   }, [filteredAnime, searchResults, isSearching])
 
   const fetchAnime = async () => {
+    // Set a timeout to show loading component after 2 seconds
+    const loadingTimer = setTimeout(() => {
+      setShowLoadingComponent(true)
+    }, 3000)
+
     try {
       setLoading(true)
       const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/anime`)
       setAnimeList(response.data)
+      setError(null) // Clear any previous errors
     } catch (error) {
       console.error('Error fetching anime:', error)
+      
+      // Check if it's a connection refused error
+      if (error.code === 'ERR_NETWORK' || error.code === 'ECONNREFUSED') {
+        setError('backend')
+      } else {
+        setError('general')
+      }
     } finally {
+      clearTimeout(loadingTimer) // Clear the timer if request completes
       setLoading(false)
+      setShowLoadingComponent(false) // Hide loading component
     }
   }
 
@@ -104,13 +120,66 @@ const Leaderboard = () => {
     return animeList.findIndex(a => a._id === anime._id) + 1
   }
 
+  // Show error message when backend is down
+  if (error === 'backend') {
+    return (
+      <div className="leaderboard-container">
+        <div className="error-container">
+          <div className="error-content">
+            <h2>Oops! My backend is experiencing issues </h2>
+            <p>It looks like my backend service is currently unavailable. This usually happens when:</p>
+            <ul>
+              <li>Render's free tier is spinning up the server</li>
+              <li>There's a temporary connection issue</li>
+              <li>The backend is restarting</li>
+            </ul>
+            <p>Please try refreshing the page in a moment!</p>
+            <button onClick={() => window.location.reload()} className="cta-button">
+              Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Show general error message for other errors
+  if (error === 'general') {
+    return (
+      <div className="leaderboard-container">
+        <div className="error-container">
+          <div className="error-content">
+            <h2>Something went wrong! </h2>
+            <p>We're having trouble loading the leaderboard data. Please try again later.</p>
+            <button onClick={() => window.location.reload()} className="cta-button">
+              Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Show loading component only if loading takes more than 2 seconds
+  if (loading && showLoadingComponent) {
+    return (
+      <div className="leaderboard-container">
+        <Loading 
+          gifUrl={leaderboardGif}
+          message="Please wait while my backend looks at the sunset!"
+          submessage="My backend right now"
+        />
+      </div>
+    )
+  }
+
+  // Show minimal loading for fast responses (< 2 seconds)
   if (loading) {
     return (
-      <Loading 
-          gifUrl={leaderboardGif}
-          message="Please wait while my backend wakes up from its free-tier nap!"
-          submessage="(Render's free tier takes a moment to stretch and yawn)"
-        />
+      <div className="minimal-loading">
+        <div className="loading-spinner"></div>
+        <p>Loading leaderboard...</p>
+      </div>
     )
   }
 

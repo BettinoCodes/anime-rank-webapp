@@ -1,3 +1,91 @@
+.minimal-loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  color: white;
+}
+
+.loading-spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error Container Styles */
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.error-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 500px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.error-content h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #ff6b6b;
+}
+
+.error-content p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.error-content ul {
+  text-align: left;
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+.error-content li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+/* Responsive error styles */
+@media (max-width: 768px) {
+  .error-content {
+    margin: 20px;
+    padding: 30px 20px;
+  }
+  
+  .error-content h2 {
+    font-size: 1.5rem;
+  }
+  
+  .error-content p {
+    font-size: 1rem;
+  }
+}
+
 .home-container {
   min-height: calc(100vh - 80px);
   color: white;

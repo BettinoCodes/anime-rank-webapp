@@ -17,30 +17,96 @@ import loadingGif from '../assets/images/loading.gif'
 const Home = () => {
   const [animeList, setAnimeList] = useState([])
   const [loading, setLoading] = useState(true)
+  const [showLoadingComponent, setShowLoadingComponent] = useState(false)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     fetchAnime()
   }, [])
 
   const fetchAnime = async () => {
+
+    const loadingTimer = setTimeout(() => {
+      setShowLoadingComponent(true)
+    }, 3000)
     try {
       const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/anime`)
       setAnimeList(response.data.slice(0, 20)) // Show more anime with compact grid
     } catch (error) {
+
       console.error('Error fetching anime:', error)
+      // Check if it's a connection refused error
+      if (error.code === 'ERR_NETWORK' || error.code === 'ECONNREFUSED') {
+        setError('backend')
+      } else {
+        setError('general')
+      }
     } finally {
+      clearTimeout(loadingTimer) 
       setLoading(false)
+      setShowLoadingComponent(false) // Hide loading component
     }
   }
 
-  if (loading) {
+  // Show error message when backend is down
+  if (error === 'backend') {
     return (
-      <Loading 
+      <div className="home-container">
+        <div className="error-container">
+          <div className="error-content">
+            <h2>Oops! My backend is experiencing issues</h2>
+            <p>It looks like my backend service is currently unavailable. This usually happens when:</p>
+            <ul>
+              <li>Render's free tier is spinning up the server</li>
+              <li>There's a temporary connection issue</li>
+              <li>The backend is restarting</li>
+            </ul>
+            <p>Please try refreshing the page in a moment!</p>
+            <button onClick={() => window.location.reload()} className="cta-button">
+              Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Show general error message for other errors
+  if (error === 'general') {
+    return (
+      <div className="home-container">
+        <div className="error-container">
+          <div className="error-content">
+            <h2>Something went wrong!</h2>
+            <p>We're having trouble loading the anime data. Please try again later.</p>
+            <button onClick={() => window.location.reload()} className="cta-button">
+              Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (loading && showLoadingComponent) {
+    return (
+      <div className="home-container">
+        <Loading 
           gifUrl={loadingGif}
           message="Please wait while my backend wakes up from its free-tier nap!"
           submessage="(Render's free tier takes a moment to stretch and yawn)"
         />
+      </div>
     )
+  }
+
+  if (loading) {
+    return (
+      <div className="minimal-loading">
+        <div className="loading-spinner"></div>
+        <p>Loading anime...</p>
+      </div>
+  )
   }
 
   return (

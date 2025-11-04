@@ -12,7 +12,6 @@ const VoteAnimeCard = ({
   imageWidth = 150,
   imageHeight = 200,
   position,
-  pointsChange = 15, // Default to 15 points
   isWinner = false,
   isLoser = false,
   isDraw = false
@@ -69,23 +68,17 @@ const VoteAnimeCard = ({
     if (isWinner) {
       return {
         type: "winner",
-        icon: "🏆",
         text: "WINNER!",
-        points: `+${pointsChange}`
       };
     } else if (isLoser) {
       return {
         type: "loser",
-        icon: "💔",
         text: "DEFEAT",
-        points: `-${pointsChange}`
       };
     } else if (isDraw) {
       return {
         type: "draw",
-        icon: "🤝",
         text: "DRAW",
-        points: `±0`
       };
     }
     return null;
@@ -118,9 +111,7 @@ const VoteAnimeCard = ({
       {showResult && overlayContent && (
         <div className={`result-overlay ${overlayContent.type}`}>
           <div className="result-content">
-            <div className="result-icon">{overlayContent.icon}</div>
             <div className="result-text">{overlayContent.text}</div>
-            <div className="points-change">{overlayContent.points}</div>
           </div>
         </div>
       )}
