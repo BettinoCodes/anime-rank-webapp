@@ -112,7 +112,7 @@ const Home = () => {
   return (
     <div className="home-container">
       <div className="hero-section">
-        <h1>AnimeRank</h1>
+        <h1>B's AnimeRank</h1>
         <p>Choose Your Favorite Anime and See How They Rank!</p>
         <Link to="/vote" className="cta-button">
           Start Voting Now
