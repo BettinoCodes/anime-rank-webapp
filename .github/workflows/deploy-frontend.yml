@@ -26,6 +26,8 @@ jobs:
     
     - name: Build project
       working-directory: ./frontend
+      env:
+        VITE_API_URL: ${{ secrets.RENDER_API_URL }}
       run: npm run build
     
     - name: Configure AWS
