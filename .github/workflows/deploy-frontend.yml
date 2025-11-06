@@ -37,5 +37,5 @@ jobs:
     
     - name: Deploy to S3
       run: |
-        aws s3 sync frontend/build/ s3://${{ secrets.AWS_S3_BUCKET }} --delete
+        aws s3 sync frontend/dist/ s3://${{ secrets.AWS_S3_BUCKET }} --delete
         echo "🎉 Frontend deployed to: http://${{ secrets.AWS_S3_BUCKET }}.s3-website-${{ secrets.AWS_REGION }}.amazonaws.com"
