@@ -115,5 +115,3 @@ Votes trigger an Elo-like update of the two anime ratings.
 - **Backend**: Intended to run on Render (or similar). Set `MONGODB_URI` and `PORT` in the service environment.
 
 ## License
-
-ISC.
